@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">nytimes</string>
     <string name="action_settings">Settings</string>
+    <string name="action_search">Search</string>
+    <string name="dialog_title_error">Error</string>
+    <string name="actionOne">1 day back</string>
+    <string name="actionSeven">7 day\'s back</string>
+    <string name="actionMonth">30 day\'s back</string>
 </resources>

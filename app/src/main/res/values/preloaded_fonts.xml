@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="preloaded_fonts" translatable="false">
+        <item>@font/reguler</item>
+        <item>@font/black</item>
+        <item>@font/bold</item>
+        <item>@font/light</item>
+    </array>
+</resources>
