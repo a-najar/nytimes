@@ -61,12 +61,8 @@ Create Build
 
 Generate Signed Apk
 -------------------
-
 ```jvm
-
 apksigner sign --ks my-release-key.jks --out my-app-release.apk my-app-unsigned-aligned.apk
-
-
 ```
  
 
