@@ -19,3 +19,23 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+-keep class com.geniusforapp.nytimes.shared.data.remote.models.** { *; }
+
+
+-keepattributes Signature
+-keepattributes *Annotation*
+-keep class okhttp3.** { *; }
+-keep interface okhttp3.** { *; }
+
+-dontwarn okhttp3.**
+
+-keep class com.squareup.okhttp.** { *; }
+-keep interface com.squareup.okhttp.** { *; }
+
+-dontwarn com.squareup.okhttp.**
+-dontwarn okio.**
+
+
+-dontwarn com.google.android.material.**
+-keep class com.google.android.material.** { *; }

@@ -23,6 +23,11 @@ buildscript {
         dagger_version = '2.22.1'
         glide_version = '4.9.0'
 
+        // build config fields
+
+        debug_values = [API_URL: 'https://api.nytimes.com/svc/', API_KEY: 'zrtOs5WBVtc0wD4ExcGoZILyQc3qwjC3']
+        release_values = [API_URL: 'https://api.nytimes.com/svc/', API_KEY: 'zrtOs5WBVtc0wD4ExcGoZILyQc3qwjC3']
+
     }
     repositories {
         google()
