@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.geniusforapp.nytimes.presentation.main.domain.usecases.GetArticlesUseCase
-import com.geniusforapp.nytimes.presentation.main.domain.usecases.SearchUseCase
 import com.geniusforapp.nytimes.shared.data.remote.models.Article
 import com.geniusforapp.nytimes.shared.data.remote.models.Result
 import io.reactivex.disposables.CompositeDisposable
@@ -16,8 +15,7 @@ import javax.inject.Inject
  **/
 class MainViewModel @Inject constructor(
     private val compositeDisposable: CompositeDisposable,
-    private val getArticlesUseCase: GetArticlesUseCase,
-    private val searchUseCase: SearchUseCase
+    private val getArticlesUseCase: GetArticlesUseCase
 ) : ViewModel() {
 
     private var articlesLiveData: MutableLiveData<Result>? = null
@@ -47,14 +45,6 @@ class MainViewModel @Inject constructor(
     }
 
     fun getQuery(): String? = query
-    fun search(newText: String?) {
-        query = newText
-        getSearchResult(newText)
-    }
-
-    private fun getSearchResult(newText: String?) {
-        searchUseCase.search(newText)
-    }
 
     fun refresh(number: String, forceRefresh: Boolean = false) {
         if (!forceRefresh) if (filterValue == number) return

@@ -3,7 +3,6 @@ package com.geniusforapp.nytimes.presentation.main.vm
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.geniusforapp.nytimes.presentation.main.domain.usecases.GetArticlesUseCase
-import com.geniusforapp.nytimes.presentation.main.domain.usecases.SearchUseCase
 import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
 
@@ -12,11 +11,12 @@ import javax.inject.Inject
  * Copyrights (c) 2019-06-10 Created By Ahmad Najar
  **/
 @Suppress("UNCHECKED_CAST")
-class MainViewModelFactory @Inject constructor(private val compositeDisposable: CompositeDisposable,
-                                               private val getArticlesUseCase: GetArticlesUseCase,
-                                               private val searchUseCase: SearchUseCase) : ViewModelProvider.Factory {
+class MainViewModelFactory @Inject constructor(
+    private val compositeDisposable: CompositeDisposable,
+    private val getArticlesUseCase: GetArticlesUseCase
+) : ViewModelProvider.Factory {
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        return MainViewModel(compositeDisposable, getArticlesUseCase, searchUseCase) as T
+        return MainViewModel(compositeDisposable, getArticlesUseCase) as T
     }
 }
