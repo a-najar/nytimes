@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.geniusforapp.nytimes.R
 import com.geniusforapp.nytimes.presentation.base.BaseActivity
-import com.geniusforapp.nytimes.presentation.main.adapters.FilterHelper
+import com.geniusforapp.nytimes.presentation.main.adapters.AdapterFilter
 import com.geniusforapp.nytimes.presentation.main.adapters.MainAdapter
 import com.geniusforapp.nytimes.presentation.main.menu.SearchMenuBuilder
 import com.geniusforapp.nytimes.presentation.main.vm.MainViewModel
@@ -40,7 +40,7 @@ class MainActivity : BaseActivity(), SearchView.OnQueryTextListener,
     lateinit var mainViewModelFactory: MainViewModelFactory
 
     @Inject
-    lateinit var filterHelper: FilterHelper
+    lateinit var adapterFilter: AdapterFilter
 
     lateinit var viewModel: MainViewModel
 
@@ -77,7 +77,7 @@ class MainActivity : BaseActivity(), SearchView.OnQueryTextListener,
         swipeRefresh.isRefreshing = false
         listItems.visibility = View.VISIBLE
         mainAdapter.submitList(articles)
-        filterHelper.withList(articles)
+        adapterFilter.withList(articles)
     }
 
     // handle error to with dialog

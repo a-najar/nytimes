@@ -20,10 +20,10 @@ import javax.inject.Singleton
 @Singleton
 class MainAdapter @Inject constructor(
     diffCallback: DiffCallBack,
-    private val filterHelper: FilterHelper
+    private val adapterFilter: AdapterFilter
 ) : ListAdapter<Article, MainViewHolder>(diffCallback), Filterable {
 
-    override fun getFilter(): Filter = filterHelper
+    override fun getFilter(): Filter = adapterFilter
 
 
     var onItemClick: ((view: View, position: Int, article: Article) -> Unit)? = null
@@ -40,6 +40,6 @@ class MainAdapter @Inject constructor(
 
     override fun onBindViewHolder(holder: MainViewHolder, position: Int) {
         holder.bindData(getItem(holder.adapterPosition), onItemClick)
-        filterHelper.submitList = { submitList(it) }
+        adapterFilter.submitList = { submitList(it) }
     }
 }
