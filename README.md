@@ -3,10 +3,21 @@ NY-Times application example with RxJava,RxAndroid,MVVM,Dagger2
 
 in this project I followed the mvvm architecture and the reactive programing rx java and rx
 
-<img src="/images/img1.png" width="420"> 
-<img src="/images/img2.png" width="420"> 
-<img src="/images/img3.png" width="420"> 
-<img src="/images/img4.png" width="420">
+Screenshots
+-----------
+
+HomeScreen                 |  HomesScreen search
+:-------------------------:|:-------------------------:
+![](/images/img1.png)  |  ![](/images/img2.png)
+
+HomeScreen(filter)         |  Article screen
+:-------------------------:|:-------------------------:
+![](/images/img3.png)  |  ![](/images/img4.png)
+
+<img src="/images/img1.png" width="250"> 
+<img src="/images/img2.png" width="250"> 
+<img src="/images/img3.png" width="250"> 
+<img src="/images/img4.png" width="250">
 
 
 
