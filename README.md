@@ -3,10 +3,7 @@ NY-Times application example with RxJava,RxAndroid,MVVM,Dagger2
 
 in this project I followed the mvvm architecture and the reactive programing rx java and rx
 
-<img src="/images/img1.png" width="1024">
-<img src="/images/img2.png" width="1024">
-<img src="/images/img3.png" width="1024">
-<img src="/images/img4.png" width="1024">
+<img src="/images/img1.png" width="1024" height="720"> <img src="/images/img2.png" width="1024" height="720"> <img src="/images/img3.png" width="1024" height="720"> <img src="/images/img4.png" width="1024" height="720">
 
 
 
