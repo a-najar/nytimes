@@ -47,6 +47,27 @@ android {
 }
 
 ``` 
+
+Create Build 
+------------
+```gradle
+ ./gradlew clean
+ // run test
+ ./gradlew test 
+ // assemble
+ ./gradlew assemble 
+```
+
+
+Generate Signed Apk
+-------------------
+
+```jvm
+
+apksigner sign --ks my-release-key.jks --out my-app-release.apk my-app-unsigned-aligned.apk
+
+
+```
  
 
 ### Libs used in the app
