@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.geniusforapp.nytimes.R
 import com.geniusforapp.nytimes.presentation.base.BaseActivity
+import com.geniusforapp.nytimes.presentation.main.adapters.FilterHelper
 import com.geniusforapp.nytimes.presentation.main.adapters.MainAdapter
 import com.geniusforapp.nytimes.presentation.main.menu.SearchMenuBuilder
 import com.geniusforapp.nytimes.presentation.main.vm.MainViewModel
@@ -20,6 +21,7 @@ import com.geniusforapp.nytimes.presentation.main.vm.MainViewModelFactory
 import com.geniusforapp.nytimes.shared.data.remote.models.Article
 import com.geniusforapp.nytimes.shared.data.remote.models.Result
 import com.geniusforapp.nytimes.shared.data.remote.models.Result.Loading
+import com.geniusforapp.nytimes.shared.ktx.loadWebPage
 import kotlinx.android.synthetic.main.content_main.*
 import javax.inject.Inject
 
@@ -36,6 +38,9 @@ class MainActivity : BaseActivity(), SearchView.OnQueryTextListener,
 
     @Inject
     lateinit var mainViewModelFactory: MainViewModelFactory
+
+    @Inject
+    lateinit var filterHelper: FilterHelper
 
     lateinit var viewModel: MainViewModel
 
@@ -72,6 +77,7 @@ class MainActivity : BaseActivity(), SearchView.OnQueryTextListener,
         swipeRefresh.isRefreshing = false
         listItems.visibility = View.VISIBLE
         mainAdapter.submitList(articles)
+        filterHelper.withList(articles)
     }
 
     // handle error to with dialog
@@ -97,6 +103,7 @@ class MainActivity : BaseActivity(), SearchView.OnQueryTextListener,
             adapter = mainAdapter
             layoutManager = linearLayoutManager
         }
+        mainAdapter.onItemClick = { view, position, article -> loadWebPage(article.url) }
     }
 
     //set content view layout the xml to get the data from it
@@ -128,7 +135,7 @@ class MainActivity : BaseActivity(), SearchView.OnQueryTextListener,
     }
 
     override fun onQueryTextChange(newText: String?): Boolean {
-        viewModel.search(newText)
+        mainAdapter.filter.filter(newText)
         return true
     }
 

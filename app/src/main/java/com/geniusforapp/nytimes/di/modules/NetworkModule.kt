@@ -12,6 +12,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
 /**
@@ -27,9 +28,12 @@ class NetworkModule {
     @Singleton
     fun provideOkHttp(headerInterceptor: HeaderInterceptor): OkHttpClient {
         return OkHttpClient.Builder()
-                .addInterceptor(headerInterceptor)
-                .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
-                .build()
+            .connectTimeout(10, TimeUnit.SECONDS)
+            .writeTimeout(10, TimeUnit.SECONDS)
+            .readTimeout(30, TimeUnit.SECONDS)
+            .addInterceptor(headerInterceptor)
+            .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+            .build()
     }
 
     @Provides
@@ -42,17 +46,21 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    fun provideRetrofit(okHttp: OkHttpClient, gsonConverterFactory: GsonConverterFactory): Retrofit {
+    fun provideRetrofit(
+        okHttp: OkHttpClient,
+        gsonConverterFactory: GsonConverterFactory
+    ): Retrofit {
         return Retrofit.Builder()
-                .baseUrl(BuildConfig.API_URL)
-                .client(okHttp)
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .addConverterFactory(gsonConverterFactory)
-                .build()
+            .baseUrl(BuildConfig.API_URL)
+            .client(okHttp)
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+            .addConverterFactory(gsonConverterFactory)
+            .build()
     }
 
     @Provides
     @Singleton
-    fun provideAPInterface(retrofit: Retrofit): APInterface = retrofit.create(APInterface::class.java)
+    fun provideAPInterface(retrofit: Retrofit): APInterface =
+        retrofit.create(APInterface::class.java)
 
 }
